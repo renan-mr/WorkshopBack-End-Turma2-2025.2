@@ -1,1 +1,1 @@
-upando git ignore e o main.py, o git ignore fez com que nao upasse a venv do projeto
+Praticando git, fazendo commit do projeto corretamente, usando o git ignore para não upar a venv ao repositório
