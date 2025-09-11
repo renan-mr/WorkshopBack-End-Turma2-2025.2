@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Endereço</title>
+</head>
+<body>
+    <h1>Detalhes do Endereço</h1>
+    
+    <p><strong>Rua:</strong> {{ endereco.rua }}</p>
+    <p><strong>Bairro:</strong> {{ endereco.bairro }}</p>
+    <p><strong>Cidade:</strong> {{ endereco.cidade }}</p>
+    <p><strong>Estado:</strong> {{ endereco.estado }}</p>
+    <p><strong>CEP:</strong> {{ endereco.cep }}</p>
+
+    <br>
+    <a href="{% url 'endereco_list' %}">Voltar para a lista</a> |
+    <a href="{% url 'endereco_update' endereco.pk %}">Editar Endereço</a>
+
+</body>
+</html>

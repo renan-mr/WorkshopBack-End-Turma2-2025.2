@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Endereços</title>
+</head>
+<body>
+    <h1>Lista de Endereços</h1>
+
+    <a href="{% url 'endereco_create' %}">Adicionar Novo Endereço</a>
+
+    {% if enderecos %}
+        <ul>
+        {% for endereco in enderecos %}
+            <li>
+                {{ endereco.rua }}, {{ endereco.cidade }}
+                (<a href="{% url 'endereco_detail' endereco.pk %}">Detalhes</a> |
+                 <a href="{% url 'endereco_update' endereco.pk %}">Editar</a> |
+                 <a href="{% url 'endereco_delete' endereco.pk %}">Apagar</a>)
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhum endereço cadastrado.</p>
+    {% endif %}
+
+</body>
+</html>

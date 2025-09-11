@@ -17,8 +17,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app import views
+from app.views import(
+    enderecoListView,
+    enderecoDetailView,
+    enderecoCreateView,
+    enderecoUpdateView,
+    enderecoDeleteView
+)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('consultar/', views.consulta_cep, name='consulta_cep')
+    path('consultar/', views.consulta_cep, name='consulta_cep'),
+    path('enderecos/', enderecoListView.as_view(), name='endereco_list'),
+    path('enderecos/novo/', enderecoCreateView.as_view(), name='endereco_create'),
+    path('enderecos/<int:pk>/', enderecoDetailView.as_view(), name='endereco_detail'),
+    path('enderecos/<int:pk>/editar/', enderecoUpdateView.as_view(), name='endereco_update'),
+    path('enderecos/<int:pk>/apagar/', enderecoDeleteView.as_view(), name='endereco_delete'),
+    
+    # urls do crud
+    
 ]

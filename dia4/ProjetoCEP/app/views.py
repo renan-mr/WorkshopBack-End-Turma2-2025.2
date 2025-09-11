@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect
-import requests as api_requests #lembrar do pip install requests
-from .forms import CepForm
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy #lembrar do pip install requests
+from .forms import EnderecoForm, CepForm
 from .models import  Endereco
+import requests as api_requests
+from django.shortcuts import render, redirect
 # Create your views here.
 def consulta_cep(request):
     form = CepForm()
@@ -28,7 +30,33 @@ def consulta_cep(request):
                 )
                 endereco.save()
 
-                return render(request, 'consulta_cep.html', {'form': form, 'endereco': endereco})
+    return render(request, 'consulta_cep.html', {'form': form, 'endereco': endereco})
 def home(request):
     form = CepForm()
     return render(request, 'home.html', {'form': form})
+class enderecoListView(ListView):
+    model = Endereco
+    template_name = 'endereco_list.html'
+    context_object_name = 'enderecos'
+
+class enderecoDetailView(DeleteView):
+    model = Endereco
+    template_name = 'endereco_detail.html'
+    context_object_name = 'endereco'
+
+class enderecoCreateView(CreateView):
+    model = Endereco
+    form_class = EnderecoForm
+    template_name = 'endereco_form.html'
+    success_url = reverse_lazy('endereco_list')
+
+class enderecoUpdateView(UpdateView):
+    model = Endereco
+    form_class = EnderecoForm
+    template_name = 'endereco_form.html'
+    success_url = reverse_lazy('endereco_list')
+
+class enderecoDeleteView(DeleteView):
+    model = Endereco
+    template_name = 'endereco_confirm_delete.html'
+    success_url = reverse_lazy('endereco_list')

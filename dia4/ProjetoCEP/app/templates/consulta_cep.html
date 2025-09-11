@@ -13,7 +13,7 @@
         <button type="submit">Consultar</button>
     </form>
     
-    ---
+    <hr>
 
     {% if endereco %}
         <h2>Endereço Encontrado</h2>
@@ -27,6 +27,10 @@
     {% if erro %}
         <p style="color:red;">{{ erro }}</p>
     {% endif %}
+
+    <hr>
+    
+    <a href="{% url 'endereco_list' %}">Ver todos os endereços salvos</a>
 
 </body>
 </html>
